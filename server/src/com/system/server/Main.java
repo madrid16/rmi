@@ -1,27 +1,20 @@
 package com.system.server;
 
+import com.system.rrhh.RRHHServer;
 
-import com.system.common.RRHHInterface;
-import com.system.common.Utils;
-
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
+import java.rmi.RemoteException;
 
 public class Main {
 
-    public static void main(String[] args) throws Exception{
-        Utils.setCodeBase(RRHHInterface.class);
+    public static RRHHServer rrhhServer;
 
-        Server Server = new Server();
-        RRHHInterface remote = (RRHHInterface) UnicastRemoteObject.exportObject(Server, 8989);
+    public static void main(String[] args) throws RemoteException {
+        rrhhServer = new RRHHServer();
+        try {
+            rrhhServer.connectRRHH();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
-        Registry registry = LocateRegistry.getRegistry();
-        registry.rebind("Servidor", remote);
-
-        System.in.read();
-
-        registry.unbind("Servidor");
-        UnicastRemoteObject.unexportObject(Server, true);
     }
 }

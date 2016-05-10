@@ -1,15 +1,17 @@
-package com.system.server;
+package com.system.rrhh;
 
 
 import com.system.common.RRHHInterface;
 
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 
-public class Server implements RRHHInterface {
+public class RRHH implements RRHHInterface {
 
     @Override
-    public void addClient(String name) throws RemoteException {
-        System.out.println(name);
+    public void addClient(String name) throws RemoteException, SQLException {
+        RRHHCrud rrhhCrud = new RRHHCrud();
+        rrhhCrud.insert(name);
     }
 
     @Override

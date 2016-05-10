@@ -3,10 +3,11 @@ package com.system.common;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 
 public interface RRHHInterface extends Remote{
 
-    public void addClient(String name) throws RemoteException;
+    public void addClient(String name) throws RemoteException, SQLException;
 
     public void updateClient(String name) throws RemoteException;
 
