@@ -33,4 +33,39 @@ public class RRHHModel {
         }
     }
 
+    public String getDataFromServer(String name) throws RemoteException{
+        try {
+            this.connect.registryStart("localhost", 8888);
+            this.rrhhInterface = (RRHHInterface) this.connect.getRegistry().lookup("rrhh");
+            return this.rrhhInterface.getClient(name);
+        }catch (Exception e){
+            e.printStackTrace();
+            return "Not action complete";
+        }
+    }
+
+    public boolean deleteUserToServer(String name) throws RemoteException{
+        try {
+            this.connect.registryStart("localhost", 8888);
+            this.rrhhInterface = (RRHHInterface) this.connect.getRegistry().lookup("rrhh");
+            this.rrhhInterface.deleteClient(name);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean updateUserToServer(String originalName, String newName) throws RemoteException{
+        try {
+            this.connect.registryStart("localhost", 8888);
+            this.rrhhInterface = (RRHHInterface) this.connect.getRegistry().lookup("rrhh");
+            this.rrhhInterface.updateClient(originalName, newName);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

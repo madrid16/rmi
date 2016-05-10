@@ -19,7 +19,7 @@ public class RRHHServer {
         rrhh = new RRHH();
         connect = new Connect();
         RRHHInterface rrhhInterface = (RRHHInterface) UnicastRemoteObject.exportObject(rrhh, port);
-        connect.startConnect(rrhh, "rrhh", port);
+        connect.startConnect(rrhh.getParseObject(rrhh), "rrhh", port);
         try {
             System.in.read();
             connect.stopConnect("rrhh");

@@ -9,10 +9,10 @@ public interface RRHHInterface extends Remote{
 
     public void addClient(String name) throws RemoteException, SQLException;
 
-    public void updateClient(String name) throws RemoteException;
+    public void updateClient(String originalName, String newName) throws RemoteException, SQLException;
 
-    public String getClient(String name) throws RemoteException;
+    public String getClient(String name) throws RemoteException, SQLException;
 
-    public void deleteClient(String name) throws RemoteException;
+    public void deleteClient(String name) throws RemoteException, SQLException;
 
 }

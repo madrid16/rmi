@@ -4,6 +4,7 @@ package com.system.server;
 import com.system.common.RRHHInterface;
 
 import java.rmi.NotBoundException;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -35,7 +36,7 @@ public class Connect {
 
         try {
             this.registry = getRegistry(port);
-            registry.rebind(name, (RRHHInterface)object);
+            registry.rebind(name, (Remote) object);
             return true;
         } catch (RemoteException e) {
             e.printStackTrace();
